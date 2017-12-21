@@ -1,0 +1,24 @@
+repositories {
+	mavenCentral()
+}
+
+apply plugin: 'org.springframework.boot'
+
+test {
+	reports {
+		junitXml.enabled = false
+		html.enabled = true
+	}
+	testLogging {
+		events "PASSED", "STARTED", "FAILED", "SKIPPED"
+	}
+}
+
+springBoot {
+	mainClass = "com.employee.EmployeeBoot"
+	executable = true
+}
+
+bootRun {
+	systemProperties System.properties
+}

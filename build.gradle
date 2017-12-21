@@ -1,0 +1,40 @@
+buildscript {
+	ext.versions = [
+		'springBootVersion':'1.5.9.RELEASE',
+		'graphqlJava': '4.2.0',
+		'graphiqlJava': '3.9.2',
+		'slf4j': '1.7.21',
+		'junit': '4.12',
+		'mokito': '1.10.19',
+		'springjwt' : '1.0.8.RELEASE',
+		'jwt' : '0.9.0'
+	]
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath group :'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: versions.springBootVersion
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+allprojects {
+	apply plugin: 'java'
+    task allDeps(type: DependencyReportTask) {}
+    sourceCompatibility = 1.8
+	
+	dependencies {
+		compile group: 'org.springframework.boot',name : 'spring-boot-starter-web', version : versions.springBootVersion
+		compile group: 'org.springframework.boot',name : 'spring-boot-starter-data-mongodb', version : versions.springBootVersion
+		compile group: 'org.springframework.boot',name : 'spring-boot-starter-actuator', version : versions.springBootVersion
+		
+		
+		compile group: 'org.slf4j', name:'slf4j-api', version:versions.slf4j
+	
+		testCompile group: 'junit', name: 'junit', version: versions.junit
+		testCompile group: 'org.mockito', name :'mockito-all', version:versions.mokito
+	}
+}
